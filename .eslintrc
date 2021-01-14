@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+  "@typescript-eslint/indent": 0,
+  "@typescript-eslint/no-empty-function": 0,
+  "@typescript-eslint/no-shadow": ["error", { "ignoreTypeValueShadow": true }],
+  "@typescript-eslint/no-use-before-define": ["error"],
+  "@typescript-eslint/no-useless-constructor": ["error"],
+  "indent": 0,
+  "jsx-a11y/control-has-associated-label": 0,
+  "jsx-a11y/label-has-associated-control": 0,
+  "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+  "no-shadow": 0,
+  "no-use-before-define": "off",
+  "no-useless-constructor": 0,
+  "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+  "react/jsx-one-expression-per-line": 0,
+  "react/jsx-props-no-spreading": 0,
+  "react/jsx-uses-react": 0,
+  "react/prop-types": 0,
+  "react/react-in-jsx-scope": 0,
+  "import/extensions": [
+    "error",
+    "ignorePackages",
+    {
+      "js": "never",
+      "jsx": "never",
+      "ts": "never",
+      "tsx": "never"
+    }
+   ]
+  }
+}
