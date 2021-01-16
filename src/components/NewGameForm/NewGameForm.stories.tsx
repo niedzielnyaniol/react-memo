@@ -1,6 +1,7 @@
 import React from 'react';
 
-import NewGameForm, { NewGameFormProps } from './NewGameForm';
+import NewGameForm from '.';
+import NewGameFormProps from './NewGameForm.types';
 
 export const Default = (args: NewGameFormProps): JSX.Element => <NewGameForm {...args} />;
 

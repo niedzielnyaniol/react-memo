@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import NewGameForm from '../../NewGameForm/NewGameForm';
+import NewGameForm from '../../NewGameForm';
 
 import { setName } from '../../../reducers/user.slice';
 import { setBoardSize } from '../../../reducers/game.slice';

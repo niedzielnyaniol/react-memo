@@ -2,13 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Card, Radio } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-import BoardSize from '../../utils/types/BoardSize';
-
-export type NewGameFormProps = {
-  username?: string;
-  boardSize?: BoardSize;
-  onSubmit: (values: { boardSize: BoardSize; username: string }) => void;
-};
+import NewGameFormProps from './NewGameForm.types';
 
 const NewGameForm = ({ username = '', boardSize = 'small', onSubmit }: NewGameFormProps): JSX.Element => (
   <Card>
