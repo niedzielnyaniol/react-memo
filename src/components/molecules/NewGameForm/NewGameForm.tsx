@@ -4,6 +4,12 @@ import { UserOutlined } from '@ant-design/icons';
 
 import NewGameFormProps from './NewGameForm.types';
 
+import config from '../../../config';
+
+import { StyledRadioButton } from './NewGameForm.styles';
+
+const { BOARD_SIZES } = config;
+
 const NewGameForm = ({ username = '', boardSize = 'small', onSubmit }: NewGameFormProps): JSX.Element => (
   <Card>
     <Form initialValues={{ username, boardSize }} onFinish={onSubmit} layout="vertical" requiredMark={false}>
@@ -12,9 +18,11 @@ const NewGameForm = ({ username = '', boardSize = 'small', onSubmit }: NewGameFo
       </Form.Item>
       <Form.Item name="boardSize" label="Board Size">
         <Radio.Group buttonStyle="solid">
-          <Radio.Button value="small">Small (4x4)</Radio.Button>
-          <Radio.Button value="medium">Medium (6x6)</Radio.Button>
-          <Radio.Button value="large">Large (10x10)</Radio.Button>
+          {Object.entries(BOARD_SIZES).map(([key, value]) => (
+            <StyledRadioButton value={key}>
+              {key} ({value.x}x{value.y})
+            </StyledRadioButton>
+          ))}
         </Radio.Group>
       </Form.Item>
       <Form.Item>

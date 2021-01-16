@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import BoardSize from '../utils/types/BoardSize';
+import BoardSize from '../models/BoardSize';
 
 type Game = {
   boardSize: BoardSize;

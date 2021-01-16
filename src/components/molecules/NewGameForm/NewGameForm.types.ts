@@ -1,4 +1,4 @@
-import BoardSize from '../../../utils/types/BoardSize';
+import BoardSize from '../../../models/BoardSize';
 
 type NewGameFormProps = {
   username?: string;
