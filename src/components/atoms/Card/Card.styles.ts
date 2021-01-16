@@ -8,6 +8,7 @@ const StyledCard = styled.div`
   width: 100%;
   height: 100%;
   perspective: 500px;
+  cursor: pointer;
 `;
 
 const StyledContent = styled.div<{ side: CardProps['side'] }>`

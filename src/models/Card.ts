@@ -1,17 +1,7 @@
-import Origin from './Origin';
-
 type CardStates = 'covered' | 'uncovered' | 'hidden';
 
 class Card {
-  constructor(private origin: Origin, private id: number, private state: CardStates = 'covered') {}
-
-  getId(): number {
-    return this.id;
-  }
-
-  getOrigin(): Origin {
-    return this.origin;
-  }
+  constructor(public uniqueId: number, public cardId: number, public state: CardStates = 'covered') {}
 
   uncover(): void {
     this.state = 'uncovered';
@@ -23,10 +13,6 @@ class Card {
 
   hide(): void {
     this.state = 'hidden';
-  }
-
-  getState(): CardStates {
-    return this.state;
   }
 }
 

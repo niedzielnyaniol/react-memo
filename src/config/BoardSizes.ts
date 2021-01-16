@@ -1,12 +1,11 @@
 import BoardSize from '../models/BoardSize';
-import Origin from '../models/Origin';
 
-type BoardSizesConfig = { [key in BoardSize]: Origin };
+type BoardSizesConfig = { [key in BoardSize]: { cols: number; rows: number } };
 
 const BOARD_SIZES: BoardSizesConfig = {
-  small: new Origin(4, 4),
-  medium: new Origin(6, 6),
-  large: new Origin(10, 10),
+  small: { rows: 4, cols: 4 },
+  medium: { rows: 5, cols: 5 },
+  large: { rows: 5, cols: 6 },
 };
 
 export { BOARD_SIZES };

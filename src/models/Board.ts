@@ -1,27 +1,18 @@
 import Card from './Card';
-import Origin from './Origin';
 import IdGenerator from './IdGenerator';
 
 class Board {
-  private cards: Card[][];
+  public cards: Array<Card>;
 
-  constructor({ x, y }: Origin) {
-    this.cards = new Array<Card[]>(x);
+  constructor(count: number) {
+    this.cards = [];
 
-    const pairs = (x * y) / 2;
+    const pairs = count / 2;
     const idGenerator = new IdGenerator(pairs);
 
-    for (let i = 0; i < y; i += 1) {
-      this.cards[i] = new Array<Card>(x);
-
-      for (let j = 0; j < x; j += 1) {
-        this.cards[i][j] = new Card(new Origin(j, i), idGenerator.getId());
-      }
+    for (let i = 0; i < count; i += 1) {
+      this.cards.push(new Card(i, idGenerator.getId()));
     }
-  }
-
-  getCards(): Card[][] {
-    return this.cards;
   }
 }
 
