@@ -2,18 +2,19 @@ import React from 'react';
 import { Form, Input, Button, Card, Radio } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
+import BoardSize from '../../utils/types/BoardSize';
+
 export type NewGameFormProps = {
   username?: string;
-  boardSize?: 'small' | 'medium' | 'large';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSubmit: (values: any) => void;
+  boardSize?: BoardSize;
+  onSubmit: (values: { boardSize: BoardSize; username: string }) => void;
 };
 
 const NewGameForm = ({ username = '', boardSize = 'small', onSubmit }: NewGameFormProps): JSX.Element => (
   <Card>
     <Form initialValues={{ username, boardSize }} onFinish={onSubmit} layout="vertical" requiredMark={false}>
       <Form.Item label="Username" name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
-        <Input size="large" placeholder="large size" prefix={<UserOutlined />} />
+        <Input size="large" placeholder="Username" prefix={<UserOutlined />} />
       </Form.Item>
       <Form.Item name="boardSize" label="Board Size">
         <Radio.Group buttonStyle="solid">
