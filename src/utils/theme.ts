@@ -5,6 +5,11 @@ const theme = {
     white: '#fff',
     black: '#000',
   },
+  animation: {
+    duration: {
+      normal: '0.5s',
+    },
+  },
 };
 
 export default theme;

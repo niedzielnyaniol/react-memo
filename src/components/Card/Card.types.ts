@@ -1,7 +1,7 @@
 type CardProps = {
   src: string;
   alt: string;
-  side: 'front' | 'back';
+  side?: 'front' | 'back';
 };
 
 export default CardProps;

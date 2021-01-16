@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import CardProps from './Card.types';
 
@@ -16,13 +16,13 @@ const StyledContent = styled.div<{ side: CardProps['side'] }>`
   height: 100%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   transform-style: preserve-3d;
-  transition: transform 1s;
+  transition: transform ${({ theme }) => theme.animation.duration.normal};
 
   ${({ side }) =>
     side === 'back' &&
     css`
       transform: rotateY(180deg);
-      transition: transform 0.5s;
+      transition: transform ${({ theme }) => theme.animation.duration.normal};
     `}
 `;
 

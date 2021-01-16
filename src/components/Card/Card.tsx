@@ -6,7 +6,7 @@ import { StyledCard, StyledContent, StyledFront, StyledBack } from './Card.style
 const Card = ({ src, alt, side = 'back' }: CardProps): JSX.Element => (
   <StyledCard>
     <StyledContent side={side}>
-      <StyledFront>Front</StyledFront>
+      <StyledFront>{src}</StyledFront>
       <StyledBack>Back!</StyledBack>
     </StyledContent>
   </StyledCard>
