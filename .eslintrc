@@ -29,7 +29,7 @@
   "no-shadow": 0,
   "no-use-before-define": "off",
   "no-useless-constructor": 0,
-  "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"], "allow": "as-needed" }],
   "react/jsx-one-expression-per-line": 0,
   "react/jsx-props-no-spreading": 0,
   "react/jsx-uses-react": 0,

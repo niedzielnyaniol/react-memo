@@ -1,11 +1,9 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Menu } from 'antd';
 
 import { StyledLayout } from './Layout.styles';
 
-export type LayoutProps = {
-  children: ReactNode;
-};
+import LayoutProps from './Layout.types';
 
 const { Header, Content, Footer } = StyledLayout;
 
