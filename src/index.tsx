@@ -6,7 +6,6 @@ import 'antd/dist/antd.min.css';
 import App from './App';
 import { store } from './utils/store';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>

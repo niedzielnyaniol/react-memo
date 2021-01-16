@@ -2,7 +2,7 @@
   "extends": [
     "airbnb",
     "airbnb/hooks",
-    "prettier",
+    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
@@ -21,6 +21,8 @@
   "@typescript-eslint/no-use-before-define": ["error"],
   "@typescript-eslint/no-useless-constructor": ["error"],
   "indent": 0,
+  "import/no-extraneous-dependencies": 0,
+  "import/prefer-default-export": 0,
   "jsx-a11y/control-has-associated-label": 0,
   "jsx-a11y/label-has-associated-control": 0,
   "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
