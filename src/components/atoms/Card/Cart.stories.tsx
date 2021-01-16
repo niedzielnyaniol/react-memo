@@ -33,7 +33,7 @@ export const Interactive = (args: CardProps): JSX.Element => {
 Interactive.args = defaultArgs;
 
 export default {
-  title: 'Card',
+  title: 'atoms/Card',
   components: Card,
   decorators: [
     (Story: ComponentType): JSX.Element => (

@@ -12,6 +12,6 @@ Filled.args = {
 };
 
 export default {
-  title: 'NewGameForm',
+  title: 'molecules/NewGameForm',
   component: NewGameForm,
 };

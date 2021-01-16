@@ -15,5 +15,5 @@ export const decorators = [
       <Story />
       <GlobalStyle />
     </ThemeProvider>
-  )
+  ),
 ];

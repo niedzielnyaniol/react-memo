@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import { Provider } from 'react-redux';
 
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/organisms/Layout/Layout';
 
 import { store } from './store';
 
