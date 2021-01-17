@@ -2,14 +2,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getFromStorage } from '../utils/gameToStorage';
 
-type User = {
+type Statistics = {
   points: number;
   pairsLeft: number;
 };
 
 const { pairsLeft } = getFromStorage();
 
-const initialState: User = {
+const initialState: Statistics = {
   points: 0,
   pairsLeft,
 };

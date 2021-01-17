@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { mq } from '../../../utils/media';
 
 const StyledFormContainer = styled.div`
-  ${mq.tablet`
+  ${mq.lg`
     position: absolute;
     top: 50%;
     left: 50%;

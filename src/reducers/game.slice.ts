@@ -12,6 +12,8 @@ import { setToStorage, getFromStorage } from '../utils/gameToStorage';
 import { stopTimer, resetTimer } from './time.slice';
 // eslint-disable-next-line import/no-cycle
 import { AppThunk } from '../utils/store';
+// eslint-disable-next-line import/no-cycle
+import { saveResult } from './leaderboard.slice';
 import config from '../config';
 
 const { BOARD_SIZES } = config;
@@ -99,6 +101,9 @@ export const gameSlice = createSlice({
       state.boardSize = action.payload;
       state.state = null;
     },
+    resetGame: (state) => {
+      state.state = null;
+    },
   },
 });
 
@@ -111,6 +116,7 @@ const {
   saveState,
   setGameAsWon,
   setBoardSize,
+  resetGame,
 } = gameSlice.actions;
 
 const start = (): AppThunk => (dispatch, getState) => {
@@ -130,8 +136,9 @@ const start = (): AppThunk => (dispatch, getState) => {
 };
 
 const handleGameWon = (): AppThunk => (dispatch) => {
-  dispatch(setGameAsWon());
+  dispatch(saveResult());
   stopTimer();
+  dispatch(setGameAsWon());
 };
 
 const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
@@ -163,4 +170,4 @@ const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
 };
 
 export default gameSlice.reducer;
-export { start, handleCardClick, setBoardSize };
+export { start, handleCardClick, setBoardSize, resetGame };

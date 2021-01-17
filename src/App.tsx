@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from './components/organisms/Layout';
 import Home from './components/pages/Home';
 import Game from './components/pages/Game';
+import Leaderboard from './components/pages/Leaderboard';
 
 import config from './config';
 
@@ -11,8 +12,8 @@ const { ROUTES } = config;
 
 function App(): JSX.Element {
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Switch>
           <Route exact path={ROUTES.HOME.href}>
             <Home />
@@ -20,9 +21,12 @@ function App(): JSX.Element {
           <Route exact path={ROUTES.GAME.href}>
             <Game />
           </Route>
+          <Route exact path={ROUTES.LEADERBOARD.href}>
+            <Leaderboard />
+          </Route>
         </Switch>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 }
 

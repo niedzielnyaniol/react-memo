@@ -1,9 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type User = {
-  name: string;
-};
+import User from '../types/User';
 
 const KEY = '__username';
 
