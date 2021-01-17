@@ -1,7 +1,7 @@
 type CardProps = {
-  src: string;
-  alt: string;
+  cardNumber: number;
   side?: 'front' | 'back';
+  onClick: () => void;
 };
 
 export default CardProps;

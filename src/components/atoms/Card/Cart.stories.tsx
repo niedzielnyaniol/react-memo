@@ -1,11 +1,12 @@
 import React, { ComponentType, useState } from 'react';
+import { action } from '@storybook/addon-actions';
 
 import Card from './Card';
 import CardProps from './Card.types';
 
 const defaultArgs: CardProps = {
-  src: 'src',
-  alt: 'blah',
+  cardNumber: 1,
+  onClick: action('onClick'),
 };
 
 export const Default = (args: CardProps): JSX.Element => <Card {...args} />;

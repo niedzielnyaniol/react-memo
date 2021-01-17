@@ -3,10 +3,10 @@ import React from 'react';
 import CardProps from './Card.types';
 import { StyledCard, StyledContent, StyledFront, StyledBack } from './Card.styles';
 
-const Card = ({ src, alt, side = 'back' }: CardProps): JSX.Element => (
-  <StyledCard>
+const Card = ({ cardNumber, side = 'back', onClick }: CardProps): JSX.Element => (
+  <StyledCard onClick={onClick}>
     <StyledContent side={side}>
-      <StyledFront>{src}</StyledFront>
+      <StyledFront>{cardNumber}</StyledFront>
       <StyledBack>Back!</StyledBack>
     </StyledContent>
   </StyledCard>

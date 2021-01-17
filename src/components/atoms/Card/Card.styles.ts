@@ -33,8 +33,6 @@ const StyledFront = styled.div`
   height: 100%;
   color: #03446a;
   font-size: 60px;
-  line-height: 300px;
-  text-align: center;
   background: white;
   border-radius: 5px;
   backface-visibility: hidden;
