@@ -32,7 +32,7 @@ const CongratsModal = (): JSX.Element => {
       visible={isWon}
       closable={false}
       footer={[
-        <Button type="primary" onClick={handleClick}>
+        <Button type="primary" onClick={handleClick} key="1">
           Play again
         </Button>,
       ]}

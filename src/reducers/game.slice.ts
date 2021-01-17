@@ -103,8 +103,9 @@ export const gameSlice = createSlice({
       state.boardSize = action.payload;
       state.state = null;
     },
-    resetGame: (state) => {
+    reset: (state) => {
       state.state = null;
+      setToStorage(state);
     },
   },
 });
@@ -118,7 +119,7 @@ const {
   saveState,
   setGameAsWon,
   setBoardSize,
-  resetGame,
+  reset,
 } = gameSlice.actions;
 
 const start = (): AppThunk => (dispatch, getState) => {
@@ -171,6 +172,11 @@ const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
       dispatch(saveState());
     }, 1000);
   }
+};
+
+const resetGame = (): AppThunk => (dispatch) => {
+  dispatch(reset());
+  stopTimer();
 };
 
 export default gameSlice.reducer;

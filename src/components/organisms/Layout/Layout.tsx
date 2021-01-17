@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Menu, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -8,7 +8,6 @@ import { StyledLayout } from './Layout.styles';
 
 import LayoutProps from './Layout.types';
 import config from '../../../config';
-import { resetGame } from '../../../reducers/game.slice';
 import { RootState } from '../../../utils/store';
 
 const { Header, Content, Footer } = StyledLayout;
@@ -16,7 +15,6 @@ const { ROUTES } = config;
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   const gameState = useSelector((state: RootState) => state.game.state);
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleItemClick = (route: string) => {
@@ -28,7 +26,6 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
         okText: 'No, i want to stay',
         cancelText: 'Yes, lets go!',
         onCancel() {
-          dispatch(resetGame());
           history.push(route);
         },
       });

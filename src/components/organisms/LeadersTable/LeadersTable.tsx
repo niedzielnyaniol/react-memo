@@ -68,6 +68,7 @@ const LeadersTable = (): JSX.Element => {
         </StyledSelect>
       </StyledSelectWrapper>
       <Table
+        rowKey="index"
         columns={columns}
         dataSource={results[selectedBoardSize].map((el, index) => ({ ...el, index: index + 1 }))}
       />
