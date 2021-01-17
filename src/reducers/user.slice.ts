@@ -5,8 +5,10 @@ type User = {
   name: string;
 };
 
+const KEY = '__username';
+
 const initialState: User = {
-  name: '',
+  name: localStorage.getItem(KEY) || '',
 };
 
 export const userSlice = createSlice({
@@ -15,6 +17,7 @@ export const userSlice = createSlice({
   reducers: {
     setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
+      localStorage.setItem(KEY, action.payload);
     },
   },
 });

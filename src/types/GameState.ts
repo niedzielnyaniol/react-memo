@@ -8,6 +8,7 @@ type GameStates = {
   rows: number;
   uncoveredCard: Card | null;
   isGameFreezed: boolean;
+  state: 'won' | 'started' | null;
 };
 
 export default GameStates;

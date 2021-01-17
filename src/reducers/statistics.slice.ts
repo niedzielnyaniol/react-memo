@@ -1,14 +1,17 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getFromStorage } from '../utils/gameToStorage';
 
 type User = {
   points: number;
   pairsLeft: number;
 };
 
+const { pairsLeft } = getFromStorage();
+
 const initialState: User = {
   points: 0,
-  pairsLeft: 0,
+  pairsLeft,
 };
 
 export const statisticsSlice = createSlice({
@@ -16,7 +19,6 @@ export const statisticsSlice = createSlice({
   initialState,
   reducers: {
     reset: (state, action: PayloadAction<number>) => {
-      console.log(action.payload);
       state.pairsLeft = action.payload;
       state.points = 0;
     },

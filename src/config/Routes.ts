@@ -6,7 +6,7 @@ const ROUTES = {
     href: '/game',
   },
   LEADERBOARD: {
-    href: '/',
+    href: '/leaderboard',
   },
 };
 

@@ -3,39 +3,43 @@ import { createSlice } from '@reduxjs/toolkit';
 // eslint-disable-next-line import/no-cycle
 import { AppThunk } from '../utils/store';
 
+const KEY = '__time';
+
 type Time = {
   counter: number;
-  isActive: boolean;
 };
 
 const initialState: Time = {
-  counter: 0,
-  isActive: false,
+  counter: parseInt(localStorage.getItem(KEY) || '0', 10),
 };
 
 export const timeSlice = createSlice({
   name: 'time',
   initialState,
   reducers: {
-    start: (state) => {
+    reset: (state) => {
       state.counter = 0;
     },
     increment: (state) => {
       state.counter += 1;
+      localStorage.setItem(KEY, state.counter.toString());
     },
   },
 });
 
-const { start, increment } = timeSlice.actions;
+const { reset, increment } = timeSlice.actions;
 
 let interval: NodeJS.Timeout;
 
 const startTimer = (): AppThunk => (dispatch) => {
-  dispatch(start());
-
   interval = setInterval(() => {
     dispatch(increment());
   }, 1000);
+};
+
+const resetTimer = (): AppThunk => (dispatch) => {
+  dispatch(reset());
+  dispatch(startTimer());
 };
 
 const stopTimer = (): void => {
@@ -45,4 +49,4 @@ const stopTimer = (): void => {
 };
 
 export default timeSlice.reducer;
-export { startTimer, stopTimer };
+export { startTimer, stopTimer, resetTimer };

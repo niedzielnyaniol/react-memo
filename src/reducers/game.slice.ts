@@ -9,6 +9,8 @@ import BoardSize from '../models/BoardSize';
 import GameState from '../types/GameState';
 import { setToStorage, getFromStorage } from '../utils/gameToStorage';
 // eslint-disable-next-line import/no-cycle
+import { stopTimer, resetTimer } from './time.slice';
+// eslint-disable-next-line import/no-cycle
 import { AppThunk } from '../utils/store';
 import config from '../config';
 
@@ -23,30 +25,49 @@ export const gameSlice = createSlice({
     setInitialValues: (
       state,
       action: PayloadAction<{
-        boardSize: BoardSize;
         cards: Array<Card>;
         cols: number;
         rows: number;
       }>,
     ) => {
-      const { boardSize, cards, cols, rows } = action.payload;
+      const { cards, cols, rows } = action.payload;
 
       state.isGameFreezed = false;
       state.uncoveredCard = null;
-      state.boardSize = boardSize;
       state.cards = cards;
       state.cols = cols;
       state.rows = rows;
+      state.state = 'started';
 
-      setToStorage(state);
+      setToStorage({ ...state, pairsLeft: (cols * rows) / 2 });
     },
     setUncoveredCard: (state, action: PayloadAction<number>) => {
-      state.cards[action.payload].state = 'uncovered';
-      state.uncoveredCard = state.cards[action.payload];
+      const cards = [...state.cards];
+
+      cards[action.payload] = {
+        ...state.cards[action.payload],
+        state: 'uncovered',
+      };
+
+      return {
+        ...state,
+        cards,
+        uncoveredCard: cards[action.payload],
+      };
     },
     uncoverSecondCard: (state, action: PayloadAction<number>) => {
-      state.isGameFreezed = true;
-      state.cards[action.payload].state = 'uncovered';
+      const cards = [...state.cards];
+
+      cards[action.payload] = {
+        ...state.cards[action.payload],
+        state: 'uncovered',
+      };
+
+      return {
+        ...state,
+        isGameFreezed: true,
+        cards,
+      };
     },
     onGuess: (state, action: PayloadAction<number>) => {
       state.cards[action.payload].state = 'hidden';
@@ -68,24 +89,49 @@ export const gameSlice = createSlice({
       state.uncoveredCard = null;
       state.isGameFreezed = false;
     },
+    saveState: (state, action: PayloadAction<number>) => {
+      setToStorage({ ...state, pairsLeft: action.payload });
+    },
+    setGameAsWon: (state) => {
+      state.state = 'won';
+    },
+    setBoardSize: (state, action: PayloadAction<BoardSize>) => {
+      state.boardSize = action.payload;
+      state.state = null;
+    },
   },
 });
 
-const { setInitialValues, uncoverSecondCard, setUncoveredCard, onGuess, onMistake } = gameSlice.actions;
+const {
+  setInitialValues,
+  uncoverSecondCard,
+  setUncoveredCard,
+  onGuess,
+  onMistake,
+  saveState,
+  setGameAsWon,
+  setBoardSize,
+} = gameSlice.actions;
 
-const start = (boardSize: BoardSize): AppThunk => (dispatch) => {
+const start = (): AppThunk => (dispatch, getState) => {
+  const { boardSize } = getState().game;
   const { cols, rows } = BOARD_SIZES[boardSize];
   const { cards } = new Board(rows * cols);
 
   dispatch(resetStatistics((cols * rows) / 2));
   dispatch(
     setInitialValues({
-      boardSize,
       cards,
       cols,
       rows,
     }),
   );
+  dispatch(resetTimer());
+};
+
+const handleGameWon = (): AppThunk => (dispatch) => {
+  dispatch(setGameAsWon());
+  stopTimer();
 };
 
 const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
@@ -104,9 +150,17 @@ const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
       } else {
         dispatch(onMistake(id));
       }
+
+      const { pairsLeft } = getState().statistics;
+
+      if (pairsLeft === 0) {
+        dispatch(handleGameWon());
+      }
+
+      dispatch(saveState(pairsLeft));
     }, 1000);
   }
 };
 
 export default gameSlice.reducer;
-export { start, handleCardClick };
+export { start, handleCardClick, setBoardSize };

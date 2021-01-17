@@ -6,7 +6,7 @@ import NewGameForm from '../../molecules/NewGameForm';
 
 import BoardSize from '../../../models/BoardSize';
 import { setName } from '../../../reducers/user.slice';
-import { start as startGame } from '../../../reducers/game.slice';
+import { setBoardSize } from '../../../reducers/game.slice';
 import { RootState } from '../../../utils/store';
 import config from '../../../config';
 
@@ -28,7 +28,7 @@ const Home = (): JSX.Element => {
   }));
   const handleSubmit = ({ username, boardSize }: HandleSubmitArgs) => {
     dispatch(setName(username));
-    dispatch(startGame(boardSize));
+    dispatch(setBoardSize(boardSize));
 
     history.push(ROUTES.GAME.href);
   };
