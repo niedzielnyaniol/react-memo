@@ -28,9 +28,9 @@ const columns = [
   },
   {
     title: 'Score',
-    dataIndex: 'points',
+    dataIndex: 'score',
     sorter: {
-      compare: (a: ExpandedResult, b: ExpandedResult) => a.points - b.points,
+      compare: (a: ExpandedResult, b: ExpandedResult) => a.score - b.score,
     },
   },
   {

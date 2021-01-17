@@ -2,7 +2,7 @@ import BoardSize from '../models/BoardSize';
 
 type Result = {
   username: string;
-  points: number;
+  score: number;
   time: number;
 };
 

@@ -26,6 +26,7 @@ const Home = (): JSX.Element => {
     name: state.user.name,
     size: state.game.boardSize,
   }));
+
   const handleSubmit = ({ username, boardSize }: HandleSubmitArgs) => {
     dispatch(setName(username));
     dispatch(setBoardSize(boardSize));

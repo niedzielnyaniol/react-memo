@@ -12,11 +12,13 @@ const { ROUTES } = config;
 
 const CongratsModal = (): JSX.Element => {
   const dispatch = useDispatch();
-  const { points, isWon, username, time } = useSelector((state: RootState) => ({
-    points: state.statistics.points,
+  const { score, isWon, username, time, place, boardSize } = useSelector((state: RootState) => ({
+    score: state.score.value,
     isWon: state.game.state === 'won',
     username: state.user.name,
     time: state.time.counter,
+    place: state.leaderboard.currentPlace,
+    boardSize: state.game.boardSize,
   }));
 
   const handleClick = () => {
@@ -34,11 +36,13 @@ const CongratsModal = (): JSX.Element => {
         </Button>,
       ]}
     >
-      <p>Your points: {points}</p>
+      <p>Your score: {score}</p>
       <p>Your time: {formatTime(time)}</p>
-      <p>
-        Check your result on <Link to={ROUTES.LEADERBOARD.href}>leaderboard</Link>
-      </p>
+      {place && (
+        <p>
+          You took {place} place in the category {boardSize} <Link to={ROUTES.LEADERBOARD.href}>check leaderboard</Link>
+        </p>
+      )}
     </Modal>
   );
 };

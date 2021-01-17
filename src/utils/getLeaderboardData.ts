@@ -11,7 +11,7 @@ const getResults = (): Array<Result> => {
   for (let i = 10; i > 0; i -= 1) {
     result.push({
       username: faker.internet.userName(),
-      points: i * 1000,
+      score: i * 50,
       time: i * 11,
     });
   }

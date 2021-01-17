@@ -9,6 +9,7 @@ type GameStates = {
   uncoveredCard: Card | null;
   isGameFreezed: boolean;
   state: 'won' | 'started' | null;
+  pairsLeft: number;
 };
 
 export default GameStates;

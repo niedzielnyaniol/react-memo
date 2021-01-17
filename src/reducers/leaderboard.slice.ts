@@ -9,12 +9,11 @@ import { AppThunk } from '../utils/store';
 
 const KEY = '__leaderboard';
 
-const initialState: Leaderboard = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  results: localStorage.getItem(KEY) ? JSON.parse(localStorage.getItem(KEY)) : getLeaderboardData(),
-  currentPlace: null,
-};
+const initialState: Leaderboard = localStorage.getItem(KEY)
+  ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    JSON.parse(localStorage.getItem(KEY))
+  : { results: getLeaderboardData(), currentPlace: null };
 
 export const leaderboardSlice = createSlice({
   name: 'leaderboard',
@@ -25,11 +24,11 @@ export const leaderboardSlice = createSlice({
 
       state.results[boardSize].push(result);
       state.results[boardSize].sort((a, b) => {
-        return b.points - a.points;
+        return b.score - a.score;
       });
       state.results[boardSize].pop();
 
-      state.currentPlace = state.results[boardSize].indexOf(result);
+      state.currentPlace = state.results[boardSize].indexOf(result) + 1;
 
       localStorage.setItem(KEY, JSON.stringify(state));
     },
@@ -42,14 +41,13 @@ export const leaderboardSlice = createSlice({
 const { addResult, deleteCurrentPlace } = leaderboardSlice.actions;
 
 const saveResult = (): AppThunk => (dispatch, getStore) => {
-  const { statistics, time, user, leaderboard, game } = getStore();
-  const { points } = statistics;
+  const { time, user, leaderboard, game, score } = getStore();
   const { boardSize } = game;
   const results = leaderboard.results[boardSize];
 
-  if (points > results[results.length - 1].points) {
+  if (score.value > results[results.length - 1].score) {
     const result: Result = {
-      points,
+      score: score.value,
       time: time.counter,
       username: user.name,
     };

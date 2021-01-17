@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Board from '../../molecules/Board';
 import CongratsModal from '../../molecules/CongratsModal';
 
-import { start as startGame } from '../../../reducers/game.slice';
+import { start as startGame, resetGame } from '../../../reducers/game.slice';
 import { startTimer } from '../../../reducers/time.slice';
 
 import { StyledContainer } from './Game.styles';
@@ -21,6 +21,9 @@ const Game = (): JSX.Element => {
       dispatch(startTimer());
     }
 
+    return () => {
+      dispatch(resetGame());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

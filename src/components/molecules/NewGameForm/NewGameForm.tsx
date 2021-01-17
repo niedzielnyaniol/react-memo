@@ -19,7 +19,7 @@ const NewGameForm = ({ username = '', boardSize = 'small', onSubmit }: NewGameFo
       <Form.Item name="boardSize" label="Board Size">
         <Radio.Group buttonStyle="solid">
           {Object.entries(BOARD_SIZES).map(([difficultyLevel, dimensions]) => (
-            <StyledRadioButton value={difficultyLevel}>
+            <StyledRadioButton key={difficultyLevel} value={difficultyLevel}>
               {difficultyLevel} ({dimensions.cols}x{dimensions.rows})
             </StyledRadioButton>
           ))}

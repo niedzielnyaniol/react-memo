@@ -1,8 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { reset as resetStatistics, decrementPairs } from './statistics.slice';
-
 import Board from '../models/Board';
 import Card from '../models/Card';
 import BoardSize from '../models/BoardSize';
@@ -10,6 +8,8 @@ import GameState from '../types/GameState';
 import { setToStorage, getFromStorage } from '../utils/gameToStorage';
 // eslint-disable-next-line import/no-cycle
 import { stopTimer, resetTimer } from './time.slice';
+// eslint-disable-next-line import/no-cycle
+import { addPointsForQuess, deductPointsForMistake, resetScore } from './score.slice';
 // eslint-disable-next-line import/no-cycle
 import { AppThunk } from '../utils/store';
 // eslint-disable-next-line import/no-cycle
@@ -40,8 +40,9 @@ export const gameSlice = createSlice({
       state.cols = cols;
       state.rows = rows;
       state.state = 'started';
+      state.pairsLeft = (cols * rows) / 2;
 
-      setToStorage({ ...state, pairsLeft: (cols * rows) / 2 });
+      setToStorage(state);
     },
     setUncoveredCard: (state, action: PayloadAction<number>) => {
       const cards = [...state.cards];
@@ -78,6 +79,7 @@ export const gameSlice = createSlice({
         state.cards[state.uncoveredCard.uniqueId].state = 'hidden';
       }
 
+      state.pairsLeft -= 1;
       state.uncoveredCard = null;
       state.isGameFreezed = false;
     },
@@ -91,8 +93,8 @@ export const gameSlice = createSlice({
       state.uncoveredCard = null;
       state.isGameFreezed = false;
     },
-    saveState: (state, action: PayloadAction<number>) => {
-      setToStorage({ ...state, pairsLeft: action.payload });
+    saveState: (state) => {
+      setToStorage(state);
     },
     setGameAsWon: (state) => {
       state.state = 'won';
@@ -124,7 +126,6 @@ const start = (): AppThunk => (dispatch, getState) => {
   const { cols, rows } = BOARD_SIZES[boardSize];
   const { cards } = new Board(rows * cols);
 
-  dispatch(resetStatistics((cols * rows) / 2));
   dispatch(
     setInitialValues({
       cards,
@@ -132,6 +133,7 @@ const start = (): AppThunk => (dispatch, getState) => {
       rows,
     }),
   );
+  dispatch(resetScore());
   dispatch(resetTimer());
 };
 
@@ -153,18 +155,19 @@ const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
     setTimeout(() => {
       if (uncoveredCard.cardId === card.cardId) {
         dispatch(onGuess(id));
-        dispatch(decrementPairs());
+        dispatch(addPointsForQuess());
       } else {
         dispatch(onMistake(id));
+        dispatch(deductPointsForMistake());
       }
 
-      const { pairsLeft } = getState().statistics;
+      const { pairsLeft } = getState().game;
 
       if (pairsLeft === 0) {
         dispatch(handleGameWon());
       }
 
-      dispatch(saveState(pairsLeft));
+      dispatch(saveState());
     }, 1000);
   }
 };
