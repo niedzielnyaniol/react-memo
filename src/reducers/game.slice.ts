@@ -9,7 +9,7 @@ import { setToStorage, getFromStorage } from '../utils/gameToStorage';
 // eslint-disable-next-line import/no-cycle
 import { stopTimer, resetTimer } from './time.slice';
 // eslint-disable-next-line import/no-cycle
-import { addPointsForQuess, deductPointsForMistake, resetScore } from './score.slice';
+import { addPointsForQuess, deductPointsForMistake, resetScore, addTimeBonus } from './score.slice';
 // eslint-disable-next-line import/no-cycle
 import { AppThunk } from '../utils/store';
 // eslint-disable-next-line import/no-cycle
@@ -138,6 +138,7 @@ const start = (): AppThunk => (dispatch, getState) => {
 };
 
 const handleGameWon = (): AppThunk => (dispatch) => {
+  dispatch(addTimeBonus());
   dispatch(saveResult());
   stopTimer();
   dispatch(setGameAsWon());

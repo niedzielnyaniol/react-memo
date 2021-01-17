@@ -12,13 +12,14 @@ const { ROUTES } = config;
 
 const CongratsModal = (): JSX.Element => {
   const dispatch = useDispatch();
-  const { score, isWon, username, time, place, boardSize } = useSelector((state: RootState) => ({
+  const { score, isWon, username, time, place, boardSize, timeBonus } = useSelector((state: RootState) => ({
     score: state.score.value,
     isWon: state.game.state === 'won',
     username: state.user.name,
     time: state.time.counter,
     place: state.leaderboard.currentPlace,
     boardSize: state.game.boardSize,
+    timeBonus: state.score.timeBonus,
   }));
 
   const handleClick = () => {
@@ -36,7 +37,9 @@ const CongratsModal = (): JSX.Element => {
         </Button>,
       ]}
     >
-      <p>Your score: {score}</p>
+      <p>
+        Your score: {score} (+{timeBonus} as time bonus)
+      </p>
       <p>Your time: {formatTime(time)}</p>
       {place && (
         <p>
