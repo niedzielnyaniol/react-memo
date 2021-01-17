@@ -5,6 +5,7 @@ import game from './game.slice';
 import time from './time.slice';
 // eslint-disable-next-line import/no-cycle
 import leaderboard from './leaderboard.slice';
+// eslint-disable-next-line import/no-cycle
 import score from './score.slice';
 
 export { user, game, time, leaderboard, score };
