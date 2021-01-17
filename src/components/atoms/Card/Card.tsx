@@ -7,7 +7,7 @@ const Card = ({ cardNumber, side = 'back', onClick }: CardProps): JSX.Element =>
   <StyledCard onClick={onClick}>
     <StyledContent side={side}>
       <StyledFront>{cardNumber}</StyledFront>
-      <StyledBack>Back!</StyledBack>
+      <StyledBack>{cardNumber}</StyledBack>
     </StyledContent>
   </StyledCard>
 );

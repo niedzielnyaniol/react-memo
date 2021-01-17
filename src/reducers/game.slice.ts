@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { reset as resetStatistics, decrementPairs } from './statistics.slice';
+
 import Board from '../models/Board';
 import Card from '../models/Card';
 import BoardSize from '../models/BoardSize';
@@ -28,23 +30,19 @@ export const gameSlice = createSlice({
       }>,
     ) => {
       const { boardSize, cards, cols, rows } = action.payload;
-      const newState: GameState = {
-        isGameFreezed: false,
-        uncoveredCard: null,
-        boardSize,
-        cards,
-        cols,
-        rows,
-      };
 
-      setToStorage(newState);
-      state = newState;
+      state.isGameFreezed = false;
+      state.uncoveredCard = null;
+      state.boardSize = boardSize;
+      state.cards = cards;
+      state.cols = cols;
+      state.rows = rows;
+
+      setToStorage(state);
     },
-    setUncoveredCard: (state, action: PayloadAction<Card>) => {
-      const { uniqueId } = action.payload;
-
-      state.cards[uniqueId].state = 'uncovered';
-      state.uncoveredCard = action.payload;
+    setUncoveredCard: (state, action: PayloadAction<number>) => {
+      state.cards[action.payload].state = 'uncovered';
+      state.uncoveredCard = state.cards[action.payload];
     },
     uncoverSecondCard: (state, action: PayloadAction<number>) => {
       state.isGameFreezed = true;
@@ -79,6 +77,7 @@ const start = (boardSize: BoardSize): AppThunk => (dispatch) => {
   const { cols, rows } = BOARD_SIZES[boardSize];
   const { cards } = new Board(rows * cols);
 
+  dispatch(resetStatistics((cols * rows) / 2));
   dispatch(
     setInitialValues({
       boardSize,
@@ -94,13 +93,14 @@ const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
   const card = cards[id];
 
   if (!uncoveredCard) {
-    dispatch(setUncoveredCard(card));
+    dispatch(setUncoveredCard(id));
   } else {
     dispatch(uncoverSecondCard(id));
 
     setTimeout(() => {
       if (uncoveredCard.cardId === card.cardId) {
         dispatch(onGuess(id));
+        dispatch(decrementPairs());
       } else {
         dispatch(onMistake(id));
       }
