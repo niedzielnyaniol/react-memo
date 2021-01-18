@@ -7,7 +7,6 @@ import CardProps from './Card.types';
 
 const StyledCard = styled.div`
   position: relative;
-  float: left;
   width: 60px;
   height: 85px;
   perspective: 500px;

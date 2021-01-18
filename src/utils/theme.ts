@@ -8,7 +8,7 @@ const theme = {
     black: '#000',
   },
   border: {
-    radius: '22px',
+    radius: '8px',
   },
   animation: {
     duration: {
