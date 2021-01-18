@@ -22,7 +22,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       Modal.confirm({
         title: 'Watch out!',
         icon: <ExclamationCircleOutlined />,
-        content: 'You are during game. Are you want to abort?',
+        content: 'You are during game. Do you want to abort?',
         okText: 'Yes',
         cancelText: 'No',
         onOk() {
