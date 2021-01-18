@@ -2,6 +2,11 @@
 
 Simple memory game
 
+## Requirements
+
+- `node` (`v14.15` recommended)
+- `npm` (`6.12.1` recommended)
+
 ## How to install
 
 ```sh
