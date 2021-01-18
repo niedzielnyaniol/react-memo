@@ -7,6 +7,8 @@ import Time from './Time';
 
 import { RootState } from '../../../utils/store';
 
+import { StyledContainer } from './Statistics.styles';
+
 const formatScore = (score: number, increase: number): string => {
   if (increase && increase !== score) {
     return `${score} (${increase > 0 ? '+' : ''}${increase})`;
@@ -39,17 +41,19 @@ const Statistics = (): JSX.Element => {
 
   return (
     <Card>
-      <Row gutter={16}>
-        <Col span={6}>
-          <Statistic title="Score" valueStyle={getValueStyle(increase, theme)} value={formatScore(score, increase)} />
-        </Col>
-        <Col span={6}>
-          <Time />
-        </Col>
-        <Col span={6}>
-          <Statistic title="Pairs left" value={pairsLeft} />
-        </Col>
-      </Row>
+      <StyledContainer>
+        <Row gutter={16}>
+          <Col xs={24} sm={12} lg={8}>
+            <Statistic title="Score" valueStyle={getValueStyle(increase, theme)} value={formatScore(score, increase)} />
+          </Col>
+          <Col xs={24} sm={12} lg={8}>
+            <Time />
+          </Col>
+          <Col xs={24} sm={12} lg={8}>
+            <Statistic title="Pairs left" value={pairsLeft} />
+          </Col>
+        </Row>
+      </StyledContainer>
     </Card>
   );
 };

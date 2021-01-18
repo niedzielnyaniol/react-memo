@@ -36,11 +36,4 @@ Interactive.args = defaultArgs;
 export default {
   title: 'atoms/Card',
   components: Card,
-  decorators: [
-    (Story: ComponentType): JSX.Element => (
-      <div style={{ width: 300, height: 300 }}>
-        <Story />
-      </div>
-    ),
-  ],
 };

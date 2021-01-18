@@ -8,8 +8,9 @@ const StyledContainer = styled.div<{
   grid-template-rows: repeat(${({ rows }) => rows}, 1fr);
   grid-template-columns: repeat(${({ cols }) => cols}, 1fr);
   gap: 10px;
-  width: 100%;
-  height: 100%;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
 `;
 
 export { StyledContainer };

@@ -21,6 +21,8 @@ const columns = [
     sorter: {
       compare: (a: ExpandedResult, b: ExpandedResult) => a.index - b.index,
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    responsive: ['sm'] as any,
   },
   {
     title: 'Username',
@@ -39,6 +41,8 @@ const columns = [
     sorter: {
       compare: (a: ExpandedResult, b: ExpandedResult) => a.time - b.time,
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    responsive: ['sm'] as any,
     render: (time: number) => formatTime(time),
   },
 ];
@@ -68,6 +72,7 @@ const LeadersTable = (): JSX.Element => {
         </StyledSelect>
       </StyledSelectWrapper>
       <Table
+        pagination={false}
         rowKey="index"
         columns={columns}
         dataSource={results[selectedBoardSize].map((el, index) => ({ ...el, index: index + 1 }))}

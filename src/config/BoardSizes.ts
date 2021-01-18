@@ -3,9 +3,9 @@ import BoardSize from '../models/BoardSize';
 type BoardSizesConfig = { [key in BoardSize]: { cols: number; rows: number } };
 
 const BOARD_SIZES: BoardSizesConfig = {
-  small: { rows: 2, cols: 1 },
-  medium: { rows: 4, cols: 4 },
-  large: { rows: 5, cols: 4 },
+  small: { rows: 4, cols: 2 },
+  medium: { rows: 4, cols: 3 },
+  large: { rows: 4, cols: 4 },
 };
 
 export { BOARD_SIZES };

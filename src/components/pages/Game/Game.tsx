@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Board from '../../molecules/Board';
+import Statistics from '../../molecules/Statistics';
+
 import CongratsModal from '../../molecules/CongratsModal';
 
 import { start as startGame, resetGame } from '../../../reducers/game.slice';
 import { startTimer } from '../../../reducers/time.slice';
 
-import { StyledContainer } from './Game.styles';
+import { StyledBoardWrapper } from './Game.styles';
 import { RootState } from '../../../utils/store';
 
 const Game = (): JSX.Element => {
@@ -28,10 +30,13 @@ const Game = (): JSX.Element => {
   }, []);
 
   return (
-    <StyledContainer>
+    <>
       <CongratsModal />
-      <Board />
-    </StyledContainer>
+      <Statistics />
+      <StyledBoardWrapper>
+        <Board />
+      </StyledBoardWrapper>
+    </>
   );
 };
 

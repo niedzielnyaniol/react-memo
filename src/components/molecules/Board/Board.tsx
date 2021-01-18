@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CardComponent, { CardProps } from '../../atoms/Card';
-import Statistics from '../Statistics';
 
 import Card from '../../../models/Card';
 import { handleCardClick } from '../../../reducers/game.slice';
@@ -38,7 +37,6 @@ const Board = (): JSX.Element => {
 
   return (
     <>
-      <Statistics />
       <StyledContainer rows={rows} cols={cols}>
         {cards.map((card) => getCard(card, cardClick))}
       </StyledContainer>
