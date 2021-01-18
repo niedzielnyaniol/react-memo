@@ -30,12 +30,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "yarn lint:ts && yarn lint:css",
-    "lint:ts": "eslint . --ext .ts,.tsx,.js",
+    "lint:ts": "eslint src --ext .ts,.tsx,.js",
     "lint:ts:fix": "yarn lint:ts --fix",
     "lint:css": "stylelint './src/**/*.styles.ts'",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "prettier": "prettier '*/**/*.{js,ts,tsx}'",
+    "prettier": "prettier 'src/**/*.{js,ts,tsx}'",
     "prettier:fix": "yarn prettier --write"
   },
   "eslintConfig": {
