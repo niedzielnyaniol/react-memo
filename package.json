@@ -36,7 +36,9 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "prettier": "prettier 'src/**/*.{js,ts,tsx}'",
-    "prettier:fix": "yarn prettier --write"
+    "prettier:fix": "yarn prettier --write",
+    "version": "npx standard-changelog && git add .",
+    "postversion": "git push && git push --tags"
   },
   "eslintConfig": {
     "extends": [
