@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import styled, { css } from 'styled-components';
 import { lighten } from 'polished';
 

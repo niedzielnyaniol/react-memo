@@ -34,6 +34,7 @@ let interval: NodeJS.Timeout;
 const startTimer = (): AppThunk => (dispatch) => {
   interval = setInterval(() => {
     dispatch(increment());
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   }, 1000);
 };
 
@@ -49,4 +50,5 @@ const stopTimer = (): void => {
 };
 
 export default timeSlice.reducer;
+
 export { startTimer, stopTimer, resetTimer };

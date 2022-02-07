@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Layout from './components/organisms/Layout';
@@ -10,24 +9,22 @@ import config from './config';
 
 const { ROUTES } = config;
 
-function App(): JSX.Element {
-  return (
-    <Router>
-      <Layout>
-        <Switch>
-          <Route exact path={ROUTES.HOME.href}>
-            <Home />
-          </Route>
-          <Route exact path={ROUTES.GAME.href}>
-            <Game />
-          </Route>
-          <Route exact path={ROUTES.LEADERBOARD.href}>
-            <Leaderboard />
-          </Route>
-        </Switch>
-      </Layout>
-    </Router>
+const App = (): JSX.Element => (
+  <Router>
+    <Layout>
+      <Switch>
+        <Route exact path={ROUTES.HOME.href}>
+          <Home />
+        </Route>
+        <Route exact path={ROUTES.GAME.href}>
+          <Game />
+        </Route>
+        <Route exact path={ROUTES.LEADERBOARD.href}>
+          <Leaderboard />
+        </Route>
+      </Switch>
+    </Layout>
+  </Router>
   );
-}
 
 export default App;

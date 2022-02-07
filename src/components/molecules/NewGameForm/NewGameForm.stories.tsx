@@ -1,5 +1,3 @@
-import React from 'react';
-
 import NewGameForm from '.';
 import NewGameFormProps from './NewGameForm.types';
 
@@ -12,6 +10,5 @@ Filled.args = {
 };
 
 export default {
-  title: 'molecules/NewGameForm',
   component: NewGameForm,
 };

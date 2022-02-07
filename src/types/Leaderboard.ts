@@ -16,4 +16,5 @@ type Leaderboard = {
 };
 
 export default Leaderboard;
+
 export type { Result, Results };

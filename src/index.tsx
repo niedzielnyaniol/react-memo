@@ -1,9 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import 'antd/dist/antd.min.css';
 
+import { StrictMode } from 'react';
 import App from './App';
 
 import { store } from './utils/store';
@@ -19,14 +19,14 @@ declare module 'styled-components' {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <App />
         <GlobalStyle />
       </ThemeProvider>
     </Provider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root'),
 );
 

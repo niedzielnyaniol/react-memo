@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Input, Button, Card, Radio } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CardComponent, { CardProps } from '../../atoms/Card';
@@ -36,11 +35,9 @@ const Board = (): JSX.Element => {
   };
 
   return (
-    <>
-      <StyledContainer rows={rows} cols={cols}>
-        {cards.map((card) => getCard(card, cardClick))}
-      </StyledContainer>
-    </>
+    <StyledContainer rows={rows} cols={cols}>
+      {cards.map((card) => getCard(card, cardClick))}
+    </StyledContainer>
   );
 };
 

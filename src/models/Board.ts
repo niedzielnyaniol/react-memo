@@ -7,6 +7,7 @@ class Board {
   constructor(count: number) {
     this.cards = [];
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const pairs = count / 2;
     const idGenerator = new IdGenerator(pairs);
 

@@ -40,6 +40,7 @@ export const gameSlice = createSlice({
       state.cols = cols;
       state.rows = rows;
       state.state = 'started';
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       state.pairsLeft = (cols * rows) / 2;
 
       setToStorage(state);
@@ -170,6 +171,7 @@ const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
       }
 
       dispatch(saveState());
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     }, 1000);
   }
 };
@@ -180,4 +182,5 @@ const resetGame = (): AppThunk => (dispatch) => {
 };
 
 export default gameSlice.reducer;
+
 export { start, handleCardClick, setBoardSize, resetGame };

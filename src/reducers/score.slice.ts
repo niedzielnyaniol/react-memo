@@ -71,4 +71,5 @@ const addTimeBonus = (): AppThunk => (dispatch, getStore) => {
 };
 
 export default scoreSlice.reducer;
+
 export { addPointsForQuess, resetScore, deductPointsForMistake, addTimeBonus };

@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import faker from 'faker';
 
 import { Result, Results } from '../types/Leaderboard';
@@ -11,7 +9,9 @@ const getResults = (): Array<Result> => {
   for (let i = 10; i > 0; i -= 1) {
     result.push({
       username: faker.internet.userName(),
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       score: i * 50,
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       time: i * 11,
     });
   }

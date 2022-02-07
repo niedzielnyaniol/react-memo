@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
 import Card from './Card';
@@ -34,6 +35,5 @@ export const Interactive = (args: CardProps): JSX.Element => {
 Interactive.args = defaultArgs;
 
 export default {
-  title: 'atoms/Card',
   components: Card,
 };

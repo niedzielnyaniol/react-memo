@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CardProps from './Card.types';
 import { StyledCard, StyledContent, StyledFront, StyledBack, StyledLine } from './Card.styles';
 

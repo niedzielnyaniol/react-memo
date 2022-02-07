@@ -23,9 +23,7 @@ export const leaderboardSlice = createSlice({
       const { result, boardSize } = action.payload;
 
       state.results[boardSize].push(result);
-      state.results[boardSize].sort((a, b) => {
-        return b.score - a.score;
-      });
+      state.results[boardSize].sort((a, b) => b.score - a.score);
       state.results[boardSize].pop();
 
       state.currentPlace = state.results[boardSize].indexOf(result) + 1;
@@ -59,4 +57,5 @@ const saveResult = (): AppThunk => (dispatch, getStore) => {
 };
 
 export default leaderboardSlice.reducer;
+
 export { saveResult };

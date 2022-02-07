@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTheme, DefaultTheme } from 'styled-components';
 import { Statistic, Row, Col, Card } from 'antd';

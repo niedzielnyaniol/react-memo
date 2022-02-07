@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Layout from '.';
 import LayoutProps from './Layout.types';
 
@@ -12,6 +10,5 @@ export const Default = (args: LayoutProps): JSX.Element => (
 );
 
 export default {
-  title: 'organisms/Layout',
   component: Layout,
 };
