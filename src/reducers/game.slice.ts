@@ -146,35 +146,37 @@ const handleGameWon = (): AppThunk => (dispatch) => {
   dispatch(setGameAsWon());
 };
 
-const handleCardClick = (id: number): AppThunk => (dispatch, getState) => {
-  const { uncoveredCard, cards } = getState().game;
-  const card = cards[id];
+const handleCardClick =
+  (id: number): AppThunk =>
+  (dispatch, getState) => {
+    const { uncoveredCard, cards } = getState().game;
+    const card = cards[id];
 
-  if (!uncoveredCard) {
-    dispatch(setUncoveredCard(id));
-  } else {
-    dispatch(uncoverSecondCard(id));
+    if (!uncoveredCard) {
+      dispatch(setUncoveredCard(id));
+    } else {
+      dispatch(uncoverSecondCard(id));
 
-    setTimeout(() => {
-      if (uncoveredCard.cardId === card.cardId) {
-        dispatch(onGuess(id));
-        dispatch(addPointsForQuess());
-      } else {
-        dispatch(onMistake(id));
-        dispatch(deductPointsForMistake());
-      }
+      setTimeout(() => {
+        if (uncoveredCard.cardId === card.cardId) {
+          dispatch(onGuess(id));
+          dispatch(addPointsForQuess());
+        } else {
+          dispatch(onMistake(id));
+          dispatch(deductPointsForMistake());
+        }
 
-      const { pairsLeft } = getState().game;
+        const { pairsLeft } = getState().game;
 
-      if (pairsLeft === 0) {
-        dispatch(handleGameWon());
-      }
+        if (pairsLeft === 0) {
+          dispatch(handleGameWon());
+        }
 
-      dispatch(saveState());
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    }, 1000);
-  }
-};
+        dispatch(saveState());
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      }, 1000);
+    }
+  };
 
 const resetGame = (): AppThunk => (dispatch) => {
   dispatch(reset());

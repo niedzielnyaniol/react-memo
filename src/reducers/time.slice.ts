@@ -34,7 +34,7 @@ let interval: NodeJS.Timeout;
 const startTimer = (): AppThunk => (dispatch) => {
   interval = setInterval(() => {
     dispatch(increment());
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   }, 1000);
 };
 

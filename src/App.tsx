@@ -25,6 +25,6 @@ const App = (): JSX.Element => (
       </Switch>
     </Layout>
   </Router>
-  );
+);
 
 export default App;
