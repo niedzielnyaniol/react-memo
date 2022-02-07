@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/niedzielnyaniol/react-memo/compare/v1.0.0...v1.0.1) (2022-02-07)
+
+
+### Bug Fixes
+
+* **typo:** change copy ([8ff3127](https://github.com/niedzielnyaniol/react-memo/commit/8ff312700b180f2a9c0f0527c04fc0e9e84128f0))
+
+
+
 # 1.0.0 (2021-01-18)
 
 
