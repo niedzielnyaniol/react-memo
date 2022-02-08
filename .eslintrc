@@ -2,12 +2,7 @@
   "extends": [
     "niedzielnyaniol",
     "niedzielnyaniol/react",
-    "niedzielnyaniol/typescript",
     "niedzielnyaniol/import",
     "niedzielnyaniol/storybook"
-  ],
-  "rules": {
-    "no-useless-constructor": "off",
-    "no-restricted-exports": "off"
-  }
+  ]
 }

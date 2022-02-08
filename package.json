@@ -52,7 +52,7 @@
     "@types/styled-components": "^5.1.7",
     "babel-plugin-styled-components": "^1.12.0",
     "eslint": "^8.8.0",
-    "eslint-config-niedzielnyaniol": "https://github.com/niedzielnyaniol/eslint-config-niedzielnyaniol",
+    "eslint-config-niedzielnyaniol": "git+https://github.com/niedzielnyaniol/eslint-config-niedzielnyaniol.git",
     "husky": "^4.3.8",
     "prettier": "^2.2.1",
     "stylelint": "^13.8.0",
